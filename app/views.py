@@ -4,8 +4,11 @@ from lib import x11r5, giphy
 import random
 import datetime
 import HTMLParser
+import redis
 
 html_parser = HTMLParser.HTMLParser()
+redis_client = redis.Redis("localhost")
+redis_client.set("joke_id", 0)
 
 @app.route('/index')
 def index():
@@ -27,6 +30,7 @@ def view():
     global previous_second_part
     global last_background
     global last_time
+    global redis_client
 
     time = datetime.datetime.now()
     if time - last_time > datetime.timedelta(minutes=3):
@@ -37,6 +41,16 @@ def view():
         previous_first_part = " ".join(words[0:num_words/2])
         previous_second_part = " ".join(words[num_words/2+1:])
         last_background=giphy.GiphyAPI.get_random_image_url(random.choice(words))
+        identifier = redis_client.incr("joke_id")
+        joke = {
+           'id': identifier,
+           'top': previous_first_part,
+           'bottom': previous_second_part,
+           'image_url': last_background,
+           'time': str(last_time),
+           'channel': "AngelHackTO"
+        }
+        redis_client.hmset("joke:%s" % identifier, joke)
 
     background = last_background
     first_part = html_parser.unescape(previous_first_part)
