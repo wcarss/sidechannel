@@ -21,7 +21,11 @@ class GiphyAPI(object):
 
     @classmethod
     def get_random_image_url(cls, tag=None):
-        response = requests.get(cls.build_random_url(tag))
-        print json.dumps(response.text, sort_keys=True, indent=4)
-        data = json.loads(response.text)['data']
+        retries = 2
+        for i in range(retries):
+            response = requests.get(cls.build_random_url(tag))
+            print json.dumps(response.text, sort_keys=True, indent=4)
+            data = json.loads(response.text)['data']
+            if not data:
+              tag = None
         return data['image_url']
