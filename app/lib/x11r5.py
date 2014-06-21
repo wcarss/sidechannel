@@ -1,7 +1,4 @@
 import requests
-import HTMLParser
-
-html_parser = HTMLParser.HTMLParser()
 
 def get_quote(length=None):
     global html_parser
@@ -14,7 +11,7 @@ def get_quote(length=None):
             quote_length = len(quote.split(" "))
             if quote_length <= length:
                 break
-    return html_parser.unescape(quote)
+    return quote
 
 if __name__ == '__main__':
     print get_quote()

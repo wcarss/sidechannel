@@ -3,6 +3,9 @@ from flask import render_template, url_for
 from lib import x11r5, giphy
 import random
 import datetime
+import HTMLParser
+
+html_parser = HTMLParser.HTMLParser()
 
 @app.route('/')
 @app.route('/index')
@@ -36,20 +39,13 @@ def view():
         last_background=giphy.GiphyAPI.get_random_image_url(random.choice(words))
 
     background = last_background
-    first_part = previous_first_part
-    second_part = previous_second_part
-
-    #sentence = "just a joke sentence"
+    first_part = html_parser.unescape(previous_first_part)
+    second_part = html_parser.unescape(previous_second_part)
 
     return render_template('view.html',
-        #first_part="AND THEN,",
         first_part=first_part,
-        #second_part="WE ALL GOT QUIET",
         second_part=second_part,
-        #sentence=sentence,
         background=background)
-#        background=giphy.GiphyAPI.get_random_image_url(random.choice(words)))
-#        background="http://s3.amazonaws.com/giphymedia/media/w1mf0wmjYN5Yc/giphy.gif")
 
 @app.route('/reset')
 def reset():
