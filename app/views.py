@@ -54,8 +54,8 @@ def generate_joke(time):
     sentence = x11r5.get_quote(length=10)
     words = sentence.split(" ")
     num_words = len(words)
-    top = " ".join(words[0:num_words/2])
-    bottom = " ".join(words[num_words/2+1:])
+    top = " ".join(words[:num_words/2])
+    bottom = " ".join(words[num_words/2:])
     image_url = giphy.GiphyAPI.get_random_image_url(random.choice(words))
 
     identifier = redis_client.incr("joke_id")
