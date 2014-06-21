@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template
+from lib import x11r5
 
 @app.route('/')
 @app.route('/index')
@@ -12,4 +13,5 @@ def make():
 
 @app.route('/view')
 def view():
-    return render_template('view.html')
+    sentence = x11r5.get_quote()
+    return render_template('view.html', sentence=sentence)
