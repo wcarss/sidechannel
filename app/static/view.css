@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.centered {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.text {
+  font-size: 6em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  /* text-shadow idea taken from http://stackoverflow.com/a/4919231 */
+  text-shadow:
+    -2px -2px 0 black,
+    2px -2px 0 black,
+    -2px 2px 0 black,
+    2px 2px 0 black;
+}
+
+.top {
+}
+
+.mid {
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0px;
+}

@@ -14,7 +14,7 @@ class GiphyAPI(object):
             api_key=api_key)
         if tag is not None:
            random_url = "{random_url}&tag={tag}".format(
-              random_url=random+url,
+              random_url=random_url,
               tag=tag)
         print "this random url was generated: %s" % random_url
         return random_url

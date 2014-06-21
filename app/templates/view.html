@@ -2,12 +2,10 @@
 <html>
 <head>
   <title>Sidechannel - View</title>
+  <link href="{{ url_for('static', filename='view.css') }}" rel="stylesheet" type="text/css" />
 </head>
-<body background="{{ background }}">
-  <h1>Sidechannel - View Jokes</h1>
-  <p>Why did the chicken cross the road?</p>
-  <p>Not to use sidechannel -- you can use it <em>anywhere</em></p>
-  <p>Here is a dynamically generated sentence, from x11r5:</p>
-  <p>{{ sentence }}</p>
+<body style="background: black url({{ background }}); background-size: 100%; background-repeat: no-repeat; background-cover: cover;">
+  <p class="centered text top">{{ first_part }}</p>
+  <p class="centered text bottom">{{ second_part }}</p>
 </body>
 </html>
