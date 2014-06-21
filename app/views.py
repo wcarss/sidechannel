@@ -7,7 +7,6 @@ import HTMLParser
 
 html_parser = HTMLParser.HTMLParser()
 
-@app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
@@ -21,6 +20,7 @@ previous_second_part = "WE ALL WENT QUIET"
 last_background = 'static/all_went_quiet.gif'
 last_time = datetime.datetime.now()
 
+@app.route('/')
 @app.route('/view')
 def view():
     global previous_first_part
