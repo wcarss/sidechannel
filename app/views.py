@@ -29,8 +29,8 @@ def make_post():
     image_url = request.form['image_url']
     if image_url.startswith('url('):
         image_url = image_url[4:-1]
-    Jokes.save_joke(top, bottom, image_url)
-    return redirect(url_for('view'))
+    joke = Jokes.save_joke(top, bottom, image_url)
+    return redirect(url_for('view_by_id', identifier=joke['id']))
 
 @app.route('/')
 @app.route('/view')
