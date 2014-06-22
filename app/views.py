@@ -1,5 +1,6 @@
 from app import app
-from flask import render_template, url_for, redirect, request
+from flask import render_template, url_for, redirect, request, jsonify
+from lib import giphy
 from models.jokes import Jokes
 import datetime
 import HTMLParser
@@ -9,6 +10,13 @@ html_parser = HTMLParser.HTMLParser()
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+@app.route('/search')
+def search_giphy():
+    results = giphy.GiphyAPI.get_searched_image_urls(request.args.get('search'))
+    print "search results are: %s" % results
+    #return "okay"
+    return jsonify(results)
 
 @app.route('/make', methods=['GET'])
 def make_get():
