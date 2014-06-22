@@ -42,3 +42,16 @@ div {
     2px 2px 0 black;
   text-align: center;
 }
+
+.imagetile {
+  height: 250px;
+  width: 310px;
+  padding: 0 !important;
+  margin: 1px !important;
+  background: url('all_went_quiet.gif');
+}
+
+.nogutter {
+  margin: 0;
+  padding: 0;
+}
