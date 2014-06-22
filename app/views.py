@@ -46,6 +46,11 @@ def get_latest_joke():
         joke = None
     return joke
 
+def get_joke_by_id(identifier):
+    global redis_client
+    joke = redis_client.hgetall("joke:%s" % identifier)
+    return joke
+
 @app.route('/index')
 def index():
     return render_template('index.html')
