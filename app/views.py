@@ -21,9 +21,11 @@ def view():
     time = datetime.datetime.now()
     print joke
     print type(joke)
+    if joke is None:
+        joke = Jokes.new_joke()
     # dates like "2014-06-21 20:38:15.191355"
     joke_time = datetime.datetime.strptime(joke['time'], "%Y-%m-%d %H:%M:%S.%f")
-    if joke is None or time - joke_time > datetime.timedelta(minutes=3):
+    if time - joke_time > datetime.timedelta(minutes=3):
         joke = Jokes.new_joke()
 
     return render_template('view.html',
