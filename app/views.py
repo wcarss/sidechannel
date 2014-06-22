@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, url_for
+from flask import render_template, url_for, redirect, request
 from models.jokes import Jokes
 import datetime
 import HTMLParser
@@ -10,9 +10,17 @@ html_parser = HTMLParser.HTMLParser()
 def index():
     return render_template('index.html')
 
-@app.route('/make')
-def make():
+@app.route('/make', methods=['GET'])
+def make_get():
     return render_template('make.html')
+
+@app.route('/make', methods=['POST'])
+def make_post():
+    top = request.form['top']
+    bottom = request.form['bottom']
+    image_url = request.form['image_url']
+    Jokes.save_joke(top, bottom, image_url)
+    return '201: Created'
 
 @app.route('/')
 @app.route('/view')

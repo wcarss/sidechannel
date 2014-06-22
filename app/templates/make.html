@@ -6,6 +6,12 @@
 <body>
   <h1>Sidechannel - Make</h1>
   <h2>This page of sidechannel is for making jokes, but that isn't done yet.</h2>
+  <form action="make" method="POST">
+    <p>top: <input type="text" name="top"></p>
+    <p>bottom: <input type="text" name="bottom"></p>
+    <p>image_url: <input type="text" name="image_url"></p>
+    <input type="submit" name="submtter" value="Make new joke!">
+  </form>
   <p>See jokes <a href="{{ url_for('view') }}">here.</a></p>
 </body>
 </html>
