@@ -22,7 +22,7 @@ def make_post():
     if image_url.startswith('url('):
         image_url = image_url[4:-1]
     Jokes.save_joke(top, bottom, image_url)
-    return '201: Created'
+    return redirect(url_for('view'))
 
 @app.route('/')
 @app.route('/view')
