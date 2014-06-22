@@ -41,6 +41,8 @@ div {
     -2px 2px 0 black,
     2px 2px 0 black;
   text-align: center;
+  background-color: transparent !important;
+  border: none;
 }
 
 .imagetile {
@@ -48,7 +50,7 @@ div {
   width: 310px;
   padding: 0 !important;
   margin: 1px !important;
-  background: url('all_went_quiet.gif');
+  /*background: url('all_went_quiet.gif');*/
 }
 
 .nogutter {
