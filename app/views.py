@@ -34,7 +34,8 @@ def view():
     time = datetime.datetime.now()
     if time - last_time > datetime.timedelta(minutes=3):
         last_time = time
-        last_joke = generate_joke(last_time)
+        (top, bottom, image_url) = generate_random_joke_pieces()
+        last_joke = save_joke(top, bottom, image_url, time)
 
     joke = last_joke
 
@@ -49,15 +50,17 @@ def reset():
     last_time = last_time - datetime.timedelta(minutes=4)
     return "okay!"
 
-def generate_joke(time):
-    global redis_client
+def generate_random_joke_pieces():
     sentence = x11r5.get_quote(length=10)
     words = sentence.split(" ")
     num_words = len(words)
     top = " ".join(words[:num_words/2])
     bottom = " ".join(words[num_words/2:])
     image_url = giphy.GiphyAPI.get_random_image_url(random.choice(words))
+    return (top, bottom, image_url)
 
+def save_joke(top, bottom, image_url, time):
+    global redis_client
     identifier = redis_client.incr("joke_id")
     joke = {
        'id': identifier,
