@@ -12,7 +12,7 @@
   <div class="container" style="width: 970px !important;">
     <div class="col-xs-12 fullheight" style="height: 100%; background: url({{ background }}); background-size: 100%; background-repeat: no-repeat; background-position: center center; padding: 0;">
       <div class="col-xs-1 fullheight" style="padding: 0;">
-        <a href="{{ url_for('view_by_id', identifier=previous['id']) }}" class="fullheight" style="display: block;"></a>
+        <a title="previous" href="{{ url_for('view_by_id', identifier=previous['id']) }}" class="fullheight" style="display: block;"></a>
       </div>
       <div class="col-xs-10 fullheight">
         <div style="position: relative; height: 50%; width: 100%; padding: 0;">
@@ -24,9 +24,9 @@
       </div>
       <div class="col-xs-1 fullheight" style="padding: 0;">
         {% if next %}
-          <a href="{{ url_for('view_by_id', identifier=next['id']) }}" class="fullheight" style="display: block;"></a>
+          <a title="next" href="{{ url_for('view_by_id', identifier=next['id']) }}" class="fullheight" style="display: block;"></a>
         {% else %}
-          <a href="{{ url_for('make_get') }}" class="fullheight" style="display: block;"></a>
+          <a title="make new image" href="{{ url_for('make_get') }}" class="fullheight" style="display: block;"></a>
         {% endif %}
       </div>
     </div>
