@@ -29,7 +29,9 @@ def view():
     return render_template('view.html',
         first_part=html_parser.unescape(joke['top']),
         second_part=html_parser.unescape(joke['bottom']),
-        background=joke['image_url'])
+        background=joke['image_url'],
+        next=Jokes.get_next_existing_joke(joke['id']),
+        previous=Jokes.get_previous_existing_joke(joke['id']))
 
 @app.route('/view/<identifier>')
 @app.route('/<identifier>')
@@ -38,7 +40,9 @@ def view_by_id(identifier):
     return render_template('view.html',
         first_part=html_parser.unescape(joke['top']),
         second_part=html_parser.unescape(joke['bottom']),
-        background=joke['image_url'])
+        background=joke['image_url'],
+        next=Jokes.get_next_existing_joke(joke['id']),
+        previous=Jokes.get_previous_existing_joke(joke['id']))
 
 @app.route('/reset')
 def reset():

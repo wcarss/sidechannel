@@ -67,7 +67,7 @@ class Jokes(object):
 
     @classmethod
     def get_previous_existing_joke(cls, identifier):
-        joke_id = cls.redis_client.get(cls, "joke_id")
+        joke_id = cls.redis_client.get("joke_id")
         if int(identifier) > int(joke_id):
             return None # nothing exists beyond the highest identifier
         if int(identifier) <= 1:

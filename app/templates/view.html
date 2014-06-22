@@ -5,6 +5,8 @@
   <link href="{{ url_for('static', filename='view.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body style="background: black url({{ background }}); background-size: 100%; background-repeat: no-repeat; background-cover: cover;">
+  <a href={{ url_for('view_by_id', identifier=next['id']) }}>next</a>
+  <a href={{ url_for('view_by_id', identifier=previous['id']) }}>previous</a>
   <p class="centered text top">{{ first_part }}</p>
   <p class="centered text bottom">{{ second_part }}</p>
 </body>
