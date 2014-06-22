@@ -49,3 +49,32 @@ class Jokes(object):
     def get_joke_by_id(cls, identifier):
         joke = cls.redis_client.hgetall("joke:%s" % identifier)
         return joke
+
+    @classmethod
+    def get_next_existing_joke(cls, identifier):
+        # get most recent (read: highest) identifier
+        joke_id = cls.redis_client.get("joke_id")
+        if int(identifier) >= int(joke_id):
+            return None # no link to 'past the max identifier'
+        if int(identifier) <= 0:
+            return None # nothing exists below 1
+        for i in xrange(int(identifier)+1, int(joke_id)+1):
+            joke = cls.redis_client.hgetall("joke:%s" % i)
+            if joke:
+                return joke
+        # if nothing found, no link
+        return None
+
+    @classmethod
+    def get_previous_existing_joke(cls, identifier):
+        joke_id = cls.redis_client.get(cls, "joke_id")
+        if int(identifier) > int(joke_id):
+            return None # nothing exists beyond the highest identifier
+        if int(identifier) <= 1:
+            return None # no link to 'before the first identifier'
+        for i in xrange(int(identifier)-1, 0, -1):
+            joke = cls.redis_client.hgetall("joke:%s" % i)
+            if joke:
+                return joke
+        # if nothing found, no link
+        return None
