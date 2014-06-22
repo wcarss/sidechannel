@@ -6,6 +6,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link href="{{ url_for('static', filename='view.css') }}" rel="stylesheet" type="text/css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script>
+    $(function() {
+       console.log("testing!");
+       image_urls = [
+         'static/all_went_quiet.gif',
+         'static/all_went_quiet.gif',
+         'static/all_went_quiet.gif',
+         'static/all_went_quiet.gif',
+         'static/all_went_quiet.gif',
+         'static/all_went_quiet.gif',
+         'static/all_went_quiet.gif',
+         'static/all_went_quiet.gif',
+         'static/all_went_quiet.gif'
+       ]
+       build_tiles(image_urls);
+     });
+
+     build_tiles = function(image_urls) {
+       for (i = 0; i < 9; i += 1) {
+         if (i % 3 == 0) {
+           html_string = ["<div class='row nogutter' id='row", Math.floor(i/3), "'></div>"].join("");
+           console.log("image_holder html is" + html_string);
+           $("#imageholder").append(html_string);
+         }
+         child_html = ["<div class='col-xs-4 imagetile nogutter' id='col", i%3, "'></div>"].join("");
+         console.log("child_html is: " + child_html);
+         $("#row"+Math.floor(i/3)).append(child_html);
+         $("#row"+Math.floor(i/3)+" #col"+(i%3)).css("background", "url(" + image_urls[i] + ")");
+         $(".imagetile").click(function(e){
+           $("#image_url").attr('value', e.target.style.background);
+         });
+       }
+     }
+  </script>
 </head>
 <body>
   <div class="container" style="width: 970px !important;">
@@ -13,23 +48,11 @@
       <div class="col-xs-12 nogutter">
         <form role="form" class="form-inline">
           <input type="text" class="form-control" name="search" id="search" placeholder="Search for images..." style="width: 90%;">
+          <input type="text" style="display:none" name="image_url" id="image_url">
           <button type="submit" class="btn btn-default" style="width: 9%;">Search!</button>
         </form>
       </div>
-      <div class="row nogutter">
-        <div class="col-xs-4 imagetile nogutter"></div>
-        <div class="col-xs-4 imagetile nogutter"></div>
-        <div class="col-xs-4 imagetile nogutter"></div>
-      </div>
-      <div class="row nogutter">
-        <div class="col-xs-4 imagetile nogutter"></div>
-        <div class="col-xs-4 imagetile nogutter"></div>
-        <div class="col-xs-4 imagetile nogutter"></div>
-      </div>
-      <div class="row nogutter">
-        <div class="col-xs-4 imagetile nogutter"></div>
-        <div class="col-xs-4 imagetile nogutter"></div>
-        <div class="col-xs-4 imagetile nogutter"></div>
+      <div id="imageholder" class="nogutter">
       </div>
     </div>
   </div>
