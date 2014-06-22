@@ -23,7 +23,11 @@
         </div>
       </div>
       <div class="col-xs-1 fullheight" style="padding: 0;">
-        <a href="{{ url_for('view_by_id', identifier=next['id']) }}" class="fullheight" style="display: block;"></a>
+        {% if next %}
+          <a href="{{ url_for('view_by_id', identifier=next['id']) }}" class="fullheight" style="display: block;"></a>
+        {% else %}
+          <a href="{{ url_for('make_get') }}" class="fullheight" style="display: block;"></a>
+        {% endif %}
       </div>
     </div>
   </div>
