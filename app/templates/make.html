@@ -12,6 +12,7 @@
        $("#stage2").hide();
 
        $("#search_button").click(function(e) {
+         $("#imageholder > *").remove();
          $.ajax({
            dataType: "json",
            url: 'search',
