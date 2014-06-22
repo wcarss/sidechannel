@@ -1,33 +1,44 @@
-* {
-  margin: 0;
-  padding: 0;
+html,body {
+  height: 100%;
+  background-color: black;
+}
+
+div {
+  padding: 0px;
+}
+
+.container {
+  height: 100%;
+}
+
+.fullheight {
+  height: 100%;
 }
 
 .centered {
   width: 100%;
-  margin: 0 auto;
-}
-
-.text {
-  font-size: 6em;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-  /* text-shadow idea taken from http://stackoverflow.com/a/4919231 */
-  text-shadow:
-    -2px -2px 0 black,
-    2px -2px 0 black,
-    -2px 2px 0 black,
-    2px 2px 0 black;
+  margin: auto;
 }
 
 .top {
-}
-
-.mid {
+  position: absolute;
+  top: 0px;
 }
 
 .bottom {
   position: absolute;
   bottom: 0px;
+}
+
+.text {
+  font-size: 6em;
+  font-weight: bold;
+  color: white;
+/* text-shadow idea taken from http://stackoverflow.com/a/4919231 */
+  text-shadow:
+    -2px -2px 0 black,
+    2px -2px 0 black,
+    -2px 2px 0 black,
+    2px 2px 0 black;
+  text-align: center;
 }

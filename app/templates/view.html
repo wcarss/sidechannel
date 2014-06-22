@@ -4,64 +4,26 @@
   <title>Sidechannel - View</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!--<link href="{{ url_for('static', filename='view.css') }}" rel="stylesheet" type="text/css" />-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <style>
-  html,body {
-    height: 100%;
-    background-color: black;
-  }
-  .container {
-    height: 100%;
-  }
-  .fullheight {
-    height: 100%;
-  }
-  .centered {
-    width: 100%;
-    margin: auto;
-  }
-  .top {
-    position: absolute;
-    top: 0px;
-  }
-  .bottom {
-    position: absolute;
-    bottom: 0px;
-  }
-  .text {
-    font-size: 6em;
-    font-weight: bold;
-    color: white;
-  /* text-shadow idea taken from http://stackoverflow.com/a/4919231 */
-    text-shadow:
-      -2px -2px 0 black,
-      2px -2px 0 black,
-      -2px 2px 0 black,
-      2px 2px 0 black;
-    text-align: center;
-  }
-  </style>
+  <link href="{{ url_for('static', filename='view.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div class="container">
-    <div class="col-md-12 fullheight" style="height: 100%; background: url({{ background }}); background-size: 100%; background-repeat: no-repeat; background-position: center center;">
-      <div class="col-md-1 fullheight">
-        <a href={{ url_for('view_by_id', identifier=previous['id']) }}>Previous</a>
+    <div class="col-md-12 fullheight" style="height: 100%; background: url({{ background }}); background-size: 100%; background-repeat: no-repeat; background-position: center center; padding: 0;">
+      <div class="col-md-1 fullheight" style="padding: 0;">
+        <a href="{{ url_for('view_by_id', identifier=previous['id']) }}" class="fullheight" style="display: block;"></a>
       </div>
       <div class="col-md-10 fullheight">
-        <div style="position: relative; height: 50%; width: 100%;">
+        <div style="position: relative; height: 50%; width: 100%; padding: 0;">
           <p class="centered text top" style="color: white;">{{ first_part }}</p>
         </div>
-        <div style="position: relative; height: 50%; width: 100%;">
+        <div style="position: relative; height: 50%; width: 100%; padding: 0;">
           <p class="centered text bottom" style="position:color: white;">{{ second_part }}</p>
         </div>
       </div>
-      <!--<p>{{ first_part }}</p>
-      <p>{{ second_part }}</p>-->
-      <div class="col-md-1 fullheight">
-        <a href={{ url_for('view_by_id', identifier=next['id']) }}>Next</a>
+      <div class="col-md-1 fullheight" style="padding: 0;">
+        <a href="{{ url_for('view_by_id', identifier=next['id']) }}" class="fullheight" style="display: block;"></a>
       </div>
     </div>
   </div>
