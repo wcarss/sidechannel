@@ -76,6 +76,15 @@ def view():
         second_part=html_parser.unescape(joke['bottom']),
         background=joke['image_url'])
 
+@app.route('/view/<identifier>')
+@app.route('/<identifier>')
+def view_by_id(identifier):
+    joke = get_joke_by_id(identifier)
+    return render_template('view.html',
+        first_part=html_parser.unescape(joke['top']),
+        second_part=html_parser.unescape(joke['bottom']),
+        background=joke['image_url'])
+
 @app.route('/reset')
 def reset():
     new_joke()
