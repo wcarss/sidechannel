@@ -38,9 +38,12 @@
          console.log("child_html is: " + child_html);
          $("#row"+Math.floor(i/3)).append(child_html);
          $("#row"+Math.floor(i/3)+" #col"+(i%3)).css("background", "url(" + image_urls[i] + ")");
+         $("#row"+Math.floor(i/3)+" #col"+(i%3)).css("background-repeat", "no-repeat");
+         $("#row"+Math.floor(i/3)+" #col"+(i%3)).css("background-size", "100%");
+         $("#row"+Math.floor(i/3)+" #col"+(i%3)).css("background-position", "center center");
          $(".imagetile").click(function(e){
-           $("#image_url").attr('value', e.target.style.background);
-           $("#backgroundholder").css('background', e.target.style.background);
+           $("#image_url").attr('value', e.target.style.background.split(" ")[0]);
+           $("#backgroundholder").css('background', e.target.style.background.split(" ")[0]);
            $("#backgroundholder").css('background-repeat', 'no-repeat');
            $("#backgroundholder").css('background-size', '100%');
            $("#backgroundholder").css('background-position', 'center center');
