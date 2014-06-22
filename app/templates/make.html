@@ -9,6 +9,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script>
     $(function() {
+       //$("#stage2").css('display', 'none');
        console.log("testing!");
        image_urls = [
          'static/all_went_quiet.gif',
@@ -37,22 +38,35 @@
          $("#row"+Math.floor(i/3)+" #col"+(i%3)).css("background", "url(" + image_urls[i] + ")");
          $(".imagetile").click(function(e){
            $("#image_url").attr('value', e.target.style.background);
+           $("#stage1").css('display', 'none');
+           $("#stage2").css('display', 'visible');
          });
        }
      }
   </script>
 </head>
 <body>
-  <div class="container" style="width: 970px !important;">
+  <div id="stage1" class="container" style="width: 970px !important;">
     <div class="col-xs-12 fullheight nogutter">
       <div class="col-xs-12 nogutter">
         <form role="form" class="form-inline">
           <input type="text" class="form-control" name="search" id="search" placeholder="Search for images..." style="width: 90%;">
-          <input type="text" style="display:none" name="image_url" id="image_url">
           <button type="submit" class="btn btn-default" style="width: 9%;">Search!</button>
         </form>
       </div>
       <div id="imageholder" class="nogutter">
+      </div>
+    </div>
+  </div>
+  <div id="stage2" class="container" style="width: 970px !important;">
+    <div class="col-xs-12 fullheight nogutter">
+      <div class="col-xs-12 nogutter">
+        <form role="form" class="form-inline" action="make" method="POST">
+          <input type="text" name="top" id="top">
+          <input type="text" name="bottom" id="bottom">
+          <input type="text" style="display:none" name="image_url" id="image_url">
+          <button type="submit" style="display: none;"></button>
+        </form>
       </div>
     </div>
   </div>

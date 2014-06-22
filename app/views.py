@@ -19,6 +19,8 @@ def make_post():
     top = request.form['top']
     bottom = request.form['bottom']
     image_url = request.form['image_url']
+    if image_url.startswith('url('):
+        image_url = image_url[4:-1]
     Jokes.save_joke(top, bottom, image_url)
     return '201: Created'
 
